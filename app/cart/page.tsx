@@ -40,7 +40,7 @@ const ItemName = styled('h3', {
 })
 
 const ItemPrice = styled('p', {
-  color: '$blue600',
+  color: '$primary',
 })
 
 const ItemActions = styled('div', {
@@ -93,7 +93,11 @@ export default function CartPage() {
     dispatch({ type: 'REMOVE_ITEM', payload: id })
   }
 
-  const total = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const total = state.items.reduce((sum, item) => {
+    const itemPrice = typeof item.price === 'number' ? item.price : 0
+    const itemQuantity = typeof item.quantity === 'number' ? item.quantity : 0
+    return sum + itemPrice * itemQuantity
+  }, 0)
 
   return (
     <>
@@ -104,18 +108,20 @@ export default function CartPage() {
           <p>Seu carrinho está vazio.</p>
         ) : (
           <>
-            {state.items.map(item => (
+            {state.items.map((item) => (
               <CartItem key={item.id}>
                 <ItemInfo>
                   <ItemName>{item.name}</ItemName>
-                  <ItemPrice>R$ {item.price.toFixed(2)}</ItemPrice>
+                  <ItemPrice>
+                    R$ {typeof item.price === 'number' ? item.price.toFixed(2) : '0.00'}
+                  </ItemPrice>
                 </ItemInfo>
                 <ItemActions>
                   <QuantityInput
                     type="number"
                     min="1"
                     value={item.quantity}
-                    onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
+                    onChange={(e) => updateQuantity(item.id, parseInt(e.target.value) || 1)}
                   />
                   <RemoveButton onClick={() => removeItem(item.id)}>
                     Remover

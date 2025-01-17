@@ -100,7 +100,7 @@ export default function Header() {
       <HeaderContent>
         <Link href="/">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/teste%20innovation-gS3WPY75ENu21P0ALeeCVJI4ZwiYx3.png"
+            src="/imagem.webp"
             alt="Innovation Brindes"
             width={180}
             height={40}
@@ -128,8 +128,8 @@ export default function Header() {
 
         <UserContainer>
           <UserInfo>
-            <UserName>Matheus Borges</UserName>
-            <UserEmail>matheush7s@gmail.com</UserEmail>
+            <UserName>Eduardo Pereira</UserName>
+            <UserEmail>eduardopereira.lima@yahoo.com</UserEmail>
           </UserInfo>
           <Avatar>
             <Image

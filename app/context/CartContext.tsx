@@ -23,6 +23,8 @@ const CartContext = createContext<{
   dispatch: React.Dispatch<CartAction>
 } | undefined>(undefined)
 
+const initialState: CartState = { items: [] }
+
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case 'ADD_ITEM':
@@ -58,7 +60,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 }
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, { items: [] })
+  const [state, dispatch] = useReducer(cartReducer, initialState)
 
   useEffect(() => {
     const savedCart = localStorage.getItem('cart')
@@ -85,4 +87,3 @@ export const useCart = () => {
   }
   return context
 }
-
