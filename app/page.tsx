@@ -1,7 +1,9 @@
 import Header from './components/Header'
 import ProductList from './components/ProductList'
+import './globals.css'
 
 export default function Home() {
+  
   return (
     <>
       <Header />

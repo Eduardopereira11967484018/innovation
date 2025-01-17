@@ -1,5 +1,6 @@
 import { createStitches } from '@stitches/react';
 
+// Criação do Stitches com tema e media queries
 export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme, config } = createStitches({
   theme: {
     colors: {
@@ -19,6 +20,7 @@ export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme
   },
 });
 
+// Estilos globais
 export const globalStyles = globalCss({
   '*': { margin: 0, padding: 0, boxSizing: 'border-box' },
   body: { 
@@ -26,5 +28,29 @@ export const globalStyles = globalCss({
     backgroundColor: '$background',
     color: '$text',
   },
+  a: {
+    color: '$secondary', // Cor do link
+    textDecoration: 'none', // Remover sublinhado
+    '&:hover': {
+      textDecoration: 'underline', // Sublinhado ao passar o mouse
+    },
+  },
 });
 
+// Componente de botão estilizado
+export const Button = styled('button', {
+  backgroundColor: '$primary',
+  color: '$background',
+  border: 'none',
+  borderRadius: '4px',
+  padding: '10px 20px',
+  cursor: 'pointer',
+  transition: 'background-color 0.3s',
+
+  '&:hover': {
+    backgroundColor: '$secondary',
+  },
+});
+
+// Aplicar estilos globais
+globalStyles();
